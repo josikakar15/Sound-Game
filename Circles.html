@@ -1,0 +1,283 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<script type="text/javascript" src="Paper Js Lib/dist/paper-full.js"></script>
+	<link rel="stylesheet" type="text/css" href="Circles.css">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.9/howler.js"></script>
+	<script type="text/paperscript" canvas="mycanvas">
+
+
+	
+
+var xinitial=0;
+	var yinitial=0;
+	
+var circles=[];
+	function onKeyDown(event) {
+	// When a key is pressed, set the content of the text item:
+	if(event.key==='a'){
+		var sound=new Howl({
+			src:['sounds/bubbles.mp3']
+		});
+		var mycolor="green";
+	}
+
+	if(event.key==='b'){
+		var sound=new Howl({
+			src:['sounds/clay.mp3']
+		});
+		var mycolor="purple";
+	}
+
+	if(event.key==='c'){
+		var sound=new Howl({
+			src:['sounds/confetti.mp3']
+		});
+		var mycolor="red";
+	}
+
+	if(event.key==='d'){
+		var sound=new Howl({
+			src:['sounds/corona.mp3']
+		});
+		var mycolor="blue";
+	}
+
+	if(event.key==='e'){
+		var sound=new Howl({
+			src:['sounds/dotted-spiral.mp3']
+		});
+		var mycolor="pink";
+	}
+
+	if(event.key==='f'){
+		var sound=new Howl({
+			src:['sounds/flash-1.mp3']
+		});
+		var mycolor="brown";
+	}
+
+	if(event.key==='g'){
+		var sound=new Howl({
+			src:['sounds/flash-2.mp3']
+		});
+		var mycolor="grey";
+	}
+
+	if(event.key==='h'){
+		var sound=new Howl({
+			src:['sounds/flash-3.mp3']
+		});
+		var mycolor="white";
+	}
+
+	if(event.key==='i'){
+		var sound=new Howl({
+			src:['sounds/glimmer.mp3']
+		});
+		var mycolor="yellow";
+	}
+
+	if(event.key==='j'){
+		var sound=new Howl({
+			src:['sounds/moon.mp3']
+		});
+		var mycolor="orange";
+	}
+
+	if(event.key==='k'){
+		var sound=new Howl({
+			src:['sounds/pinwheel.mp3']
+		});
+		var mycolor="#16a7f3";
+	}
+
+	if(event.key==='l'){
+		var sound=new Howl({
+			src:['sounds/piston-1.mp3']
+		});
+		var mycolor="maroon";
+	}
+
+	if(event.key==='m'){
+		var sound=new Howl({
+			src:['sounds/piston-2.mp3']
+		});
+		var mycolor="aqua";
+	}
+
+	if(event.key==='n'){
+		var sound=new Howl({
+			src:['sounds/piston-3.mp3']
+		});
+		var mycolor="lime";
+	}
+
+	if(event.key==='o'){
+		var sound=new Howl({
+			src:['sounds/prism-1.mp3']
+		});
+		var mycolor="olive";
+	}
+
+	if(event.key==='p'){
+		var sound=new Howl({
+			src:['sounds/prism-2.mp3']
+		});
+		var mycolor="lightsalmon";
+	}
+
+	if(event.key==='q'){
+		var sound=new Howl({
+			src:['sounds/prism-3.mp3']
+		});
+		var mycolor="hotpink";
+	}
+
+	if(event.key==='r'){
+		var sound=new Howl({
+			src:['sounds/splits.mp3']
+		});
+		var mycolor="peachpuff";
+	}
+
+	if(event.key==='s'){
+		var sound=new Howl({
+			src:['sounds/squiggle.mp3']
+		});
+		var mycolor="khaki";
+	}
+
+	if(event.key==='t'){
+		var sound=new Howl({
+			src:['sounds/strike.mp3']
+		});
+		var mycolor="teal";
+	}
+
+	if(event.key==='u'){
+		var sound=new Howl({
+			src:['sounds/suspension.mp3']
+		});
+		var mycolor="turquoise";
+	}
+
+	if(event.key==='v'){
+		var sound=new Howl({
+			src:['sounds/timer.mp3']
+		});
+		var mycolor="wheat";
+	}
+
+	if(event.key==='w'){
+		var sound=new Howl({
+			src:['sounds/ufo.mp3']
+		});
+		var mycolor="beige";
+	}
+
+	if(event.key==='x'){
+		var sound=new Howl({
+			src:['sounds/veil.mp3']
+		});
+		var mycolor="mistyrose";
+	}
+
+	if(event.key==='y'){
+		var sound=new Howl({
+			src:['sounds/wipe.mp3']
+		});
+		var mycolor="lavender";
+	}
+
+	if(event.key==='z'){
+		var sound=new Howl({
+			src:['sounds/zig-zag.mp3']
+		});
+		var mycolor="gold";
+	}
+
+
+	
+	var maxPoint=new Point(view.size.width,view.size.height);
+	var newPoint=Point.random();
+	var point=newPoint*maxPoint;
+	var myCircle = new Path.Circle(point, 500);
+myCircle.fillColor = mycolor;
+sound.play();
+circles.push(myCircle);
+
+
+
+
+}
+var amount = 5;
+
+// The maximum height of the wave:
+var height = 60;
+
+// Create a new path and style it:
+var path = new Path({
+	// 80% black:
+	strokeColor: 'red',
+	strokeWidth: 50,
+	strokeCap: 'square'
+});
+
+// Add 5 segment points to the path spread out
+// over the width of the view:
+for (var i = 0; i <= amount; i++) {
+	path.add(new Point(i / amount, 1) * view.size);
+}
+
+// Select the path, so we can see how it is constructed:
+path.selected = true;
+
+
+
+
+function onFrame(event){
+	for(var i=0;i<circles.length;i++){
+		circles[i].fillColor.hue+=1;
+		circles[i].scale(0.9);
+		if(circles[i].area < 1){
+      circles[i].remove(); // remove the circle from the canvas
+      circles.splice(i, 1); // remove the circle from the array
+      i--; // decrement i so that the loop doesn't skip a circle because of .splice()
+	}
+		
+	}
+
+	
+	// Uncomment the following line and run the script again
+	// to smooth the path:
+	// path.smooth();
+for (var i = 0; i <= 5; i++) {
+		var segment = path.segments[i];
+
+		// A cylic value between -1 and 1
+		var sinus = Math.sin(event.time * 10 + i);
+		
+		// Change the y position of the segment point:
+		segment.point.y = sinus * height + 350;
+	}
+	// Uncomment the following line and run the script again
+	// to smooth the path:
+	// path.smooth();
+}
+
+
+	
+
+
+// The amount of segment points we want to create:
+
+
+	</script>
+
+<title>Circles</title>
+</head>
+<body>
+	<canvas id="mycanvas" resize></canvas>
+</body>
+</html>
